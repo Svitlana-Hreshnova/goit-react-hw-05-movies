@@ -1,0 +1,12 @@
+.searchInput {
+    padding: 8px;
+    margin-right: 8px;
+}
+
+button {
+    padding: 8px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
