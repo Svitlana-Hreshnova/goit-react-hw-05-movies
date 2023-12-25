@@ -1,0 +1,29 @@
+.reviewsContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.reviewsTitle {
+    color: #333;
+}
+
+.reviewsList {
+    list-style: none;
+    padding: 0;
+}
+
+.reviewItem {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.reviewItem strong {
+    font-weight: bold;
+}
+
+.reviewItem:hover {
+    background-color: #f5f5f5;
+}

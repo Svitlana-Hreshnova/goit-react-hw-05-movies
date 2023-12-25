@@ -1,0 +1,50 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+img {
+    width: 250px;
+    margin: 20px 0;
+}
+
+.movieInfo {
+    margin-bottom: 20px;
+}
+
+.genres {
+    font-style: italic;
+}
+
+.tabs {
+    margin-top: 20px;
+}
+
+.tabButton {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.tabContent {
+    margin-top: 20px;
+}
+
+.castList,
+.reviewsList {
+    list-style: none;
+    padding: 0;
+}
+
+.castList li,
+.reviewsList li {
+    margin-bottom: 10px;
+}

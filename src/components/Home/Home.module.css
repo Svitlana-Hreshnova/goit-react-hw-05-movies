@@ -1,0 +1,25 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.movieList {
+    list-style: none;
+    padding: 0;
+}
+
+.movieListItem {
+    margin-bottom: 10px;
+}
+
+.movieListItem a {
+    text-decoration: none;
+    color: #333;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+
+.movieListItem a:hover {
+    border-bottom: 2px solid #3498db;
+}
