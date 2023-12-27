@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMovieDetails } from 'components/api';
 import Cast from 'components/Cast/Cast';
@@ -9,11 +9,10 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const [movieDetails, setMovieDetails] = useState(null);
-  const [selectedTab, setSelectedTab] = useState('cast');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isCastButtonClicked, setIsCastButtonClicked] = useState(false);
-  const [isReviewsButtonClicked, setIsReviewsButtonClicked] = useState(false);
+  const [isCastVisible, setIsCastVisible] = useState(false);
+  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -32,23 +31,21 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [movieId]);
 
-  const handleTabClick = tab => {
-    setSelectedTab(tab);
-
-    if (tab === 'cast') {
-      setIsCastButtonClicked(true);
-      setIsReviewsButtonClicked(false);
-    } else if (tab === 'reviews') {
-      setIsReviewsButtonClicked(true);
-      setIsCastButtonClicked(false);
-    }
-  };
-
   const defaultPosterImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   const handleGoBack = () => {
     navigate(-1);
+  };
+
+  const handleTabClick = tab => {
+    if (tab === 'cast') {
+      setIsCastVisible(true);
+      setIsReviewsVisible(false);
+    } else if (tab === 'reviews') {
+      setIsReviewsVisible(true);
+      setIsCastVisible(false);
+    }
   };
 
   return (
@@ -95,12 +92,8 @@ const MovieDetails = () => {
           {isLoading && <p>Loading...</p>}
           {error && <p>{error}</p>}
 
-          {isCastButtonClicked && selectedTab === 'cast' && (
-            <Cast movieId={movieId} />
-          )}
-          {isReviewsButtonClicked && selectedTab === 'reviews' && (
-            <Reviews movieId={movieId} />
-          )}
+          {isCastVisible && <Cast movieId={movieId} />}
+          {isReviewsVisible && <Reviews movieId={movieId} />}
         </div>
       )}
     </div>
