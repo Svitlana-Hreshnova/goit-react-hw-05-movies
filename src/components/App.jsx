@@ -8,8 +8,8 @@ const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
-const App = () => {
-  const basename = '/goit-react-hw-05-movies';
+const App = ({ repositoryName }) => {
+  const basename = `/${repositoryName}`;
 
   return (
     <Router basename={basename}>

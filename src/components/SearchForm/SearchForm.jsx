@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import css from './SearchForm.module.css';
 import { searchMovies } from 'components/api';
 
 const SearchForm = ({ setSearchResults, setIsLoading, setError }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSearch = async () => {
     setIsLoading(true);
@@ -13,7 +11,6 @@ const SearchForm = ({ setSearchResults, setIsLoading, setError }) => {
     try {
       const response = await searchMovies(searchTerm);
       setSearchResults(response.results);
-      setSearchParams({ query: searchTerm });
     } catch (error) {
       setError('Something went wrong...');
     } finally {
