@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'components/api';
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
@@ -8,6 +8,7 @@ import css from './MovieDetails.module.css';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -35,7 +36,8 @@ const MovieDetails = () => {
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   const handleGoBack = () => {
-    navigate(-1);
+    const from = location?.state?.from || '/';
+    navigate(from);
   };
 
   const handleTabClick = tab => {
@@ -76,13 +78,17 @@ const MovieDetails = () => {
           </div>
           <div className={css.tabs}>
             <button
-              className={css.tabButton}
+              className={`${css.tabButton} ${
+                isCastVisible ? css.activeTab : ''
+              }`}
               onClick={() => handleTabClick('cast')}
             >
               Cast
             </button>
             <button
-              className={css.tabButton}
+              className={`${css.tabButton} ${
+                isReviewsVisible ? css.activeTab : ''
+              }`}
               onClick={() => handleTabClick('reviews')}
             >
               Reviews

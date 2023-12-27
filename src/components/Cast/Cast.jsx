@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'components/api';
 import css from './Cast.module.css';
 
-const Cast = () => {
-  const { movieId } = useParams();
+const Cast = ({ movieId }) => {
   const [credits, setCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -26,6 +24,8 @@ const Cast = () => {
     fetchMovieCredits();
   }, [movieId]);
 
+  const defaultActorImg = 'https://via.placeholder.com/150';
+
   return (
     <div className={css.castContainer}>
       <h2 className={css.castTitle}>Cast</h2>
@@ -36,7 +36,15 @@ const Cast = () => {
       <ul className={css.castList}>
         {credits.map(actor => (
           <li key={actor.id} className={css.castListItem}>
-            {actor.name}
+            <img
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}`
+                  : defaultActorImg
+              }
+              alt={actor.name}
+            />
+            <p>{actor.name}</p>
           </li>
         ))}
       </ul>

@@ -1,26 +1,12 @@
 import { useState } from 'react';
 import css from './SearchForm.module.css';
-import { searchMovies } from 'components/api';
 
-const SearchForm = ({ setSearchResults, setIsLoading, setError }) => {
+const SearchForm = ({ onHandleSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await searchMovies(searchTerm);
-      setSearchResults(response.results);
-    } catch (error) {
-      setError('Something went wrong...');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    handleSearch();
+    onHandleSubmit(searchTerm);
   };
 
   return (
