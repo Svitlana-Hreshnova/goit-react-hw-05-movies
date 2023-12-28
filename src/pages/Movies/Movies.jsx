@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { searchMovies } from 'components/api';
-import MoviesList from 'components/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
+import MoviesList from 'components/MoviesList/MoviesList';
+import { searchMovies } from 'components/api';
 import css from './Movies.module.css';
 
 const Movies = () => {
@@ -13,8 +13,6 @@ const Movies = () => {
   const query = searchParams.get('query') || '';
 
   useEffect(() => {
-    if (!query) return;
-
     const fetchData = async () => {
       setIsLoading(true);
 
@@ -38,7 +36,7 @@ const Movies = () => {
   return (
     <div className={css.container}>
       <h2>Search Movies</h2>
-      <SearchForm onHandleSubmit={onHandleSubmit} />
+      <SearchForm onHandleSubmit={onHandleSubmit} currentQuery={query} />
 
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}

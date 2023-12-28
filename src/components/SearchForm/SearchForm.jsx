@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import css from './SearchForm.module.css';
 
-const SearchForm = ({ onHandleSubmit }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchForm = ({ onHandleSubmit, currentQuery }) => {
+  const [searchTerm, setSearchTerm] = useState(currentQuery || '');
 
   const handleSubmit = e => {
     e.preventDefault();
