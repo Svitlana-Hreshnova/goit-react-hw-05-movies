@@ -9,15 +9,7 @@ const MoviesList = ({ movies }) => {
     <ul className={css.movieList}>
       {movies.map(movie => (
         <li key={movie.id} className={css.movieListItem}>
-          <Link
-            to={{
-              pathname: `/movies/${movie.id}`,
-              state: {
-                from: location,
-                query: new URLSearchParams(location.search).get('query'),
-              },
-            }}
-          >
+          <Link to={`/movies/${movie.id}`} state={{ from: location }}>
             {movie.title}
           </Link>
         </li>
