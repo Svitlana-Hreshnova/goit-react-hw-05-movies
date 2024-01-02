@@ -36,9 +36,7 @@ const MovieDetails = () => {
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   const handleGoBack = () => {
-    const from = location?.state?.from || '/movies';
-    const query = location?.state?.query || '';
-    navigate(`${from}?query=${query}`);
+    navigate(location?.state?.from || '/');
   };
 
   const handleTabClick = tab => {
